@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Classical Cipher</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hybrid Classical Cipher</h1>
+            <p>Combining Caesar and Playfair ciphers for enhanced security</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="encrypt.html">Encrypt</a></li>
+                <li><a href="decrypt.html">Decrypt</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="intro">
+            <h2>Welcome to Hybrid Classical Cipher</h2>
+            <p>This application demonstrates a hybrid encryption system that combines the Caesar and Playfair ciphers to provide enhanced security through multiple layers of encryption.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>Caesar Cipher</h3>
+                    <p>A substitution cipher where each letter in the plaintext is shifted a certain number of places down the alphabet.</p>
+                </div>
+                <div class="feature">
+                    <h3>Playfair Cipher</h3>
+                    <p>A digraph substitution cipher that encrypts pairs of letters (digraphs) using a 5×5 grid of letters.</p>
+                </div>
+                <div class="feature">
+                    <h3>Hybrid Approach</h3>
+                    <p>Combines both ciphers for stronger encryption, making it more resistant to cryptanalysis.</p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="encrypt.html" class="btn btn-primary">Try Encryption</a>
+                <a href="about.html" class="btn btn-secondary">Learn More</a>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <ol>
+                <li>Enter your message in the encryption form</li>
+                <li>Provide a Caesar shift value (1-25)</li>
+                <li>Provide a keyword for the Playfair cipher</li>
+                <li>Click 'Encrypt' to see the result</li>
+                <li>Use the same parameters to decrypt your message</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Hybrid Classical Cipher. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

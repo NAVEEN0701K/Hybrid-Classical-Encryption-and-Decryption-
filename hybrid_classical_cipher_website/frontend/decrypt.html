@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decrypt - Hybrid Classical Cipher</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Decrypt Message</h1>
+            <p>Decrypt messages encrypted with hybrid cipher</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="encrypt.html">Encrypt</a></li>
+                <li><a href="decrypt.html" class="active">Decrypt</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="decryption-container">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="ciphertext">Enter ciphertext:</label>
+                    <textarea id="ciphertext" rows="5" placeholder="Paste the encrypted message here..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="decrypt-caesar-shift">Caesar Shift (1-25):</label>
+                        <input type="number" id="decrypt-caesar-shift" min="1" max="25" value="3">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="decrypt-playfair-key">Playfair Key:</label>
+                        <input type="text" id="decrypt-playfair-key" placeholder="Enter the original keyword" value="SECRET">
+                    </div>
+                </div>
+
+                <button id="decrypt-btn" class="btn btn-primary">Decrypt</button>
+            </div>
+
+            <div class="results-section">
+                <div class="result-box">
+                    <h3>Playfair Decryption Result:</h3>
+                    <div id="playfair-result" class="result-text"></div>
+                </div>
+
+                <div class="result-box">
+                    <h3>Final Plaintext (Caesar):</h3>
+                    <div id="plaintext-result" class="result-text"></div>
+                </div>
+
+                <div class="matrix-container">
+                    <h3>Playfair Matrix:</h3>
+                    <div id="playfair-matrix" class="matrix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>How to Decrypt:</h3>
+            <ol>
+                <li>Paste the ciphertext in the text area</li>
+                <li>Enter the original Caesar shift value (1-25)</li>
+                <li>Enter the original Playfair key used for encryption</li>
+                <li>Click 'Decrypt' to see the original message</li>
+            </ol>
+            <p><strong>Note:</strong> You must use the exact same Caesar shift and Playfair key that were used for encryption.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Hybrid Classical Cipher. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/visualization.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const decryptBtn = document.getElementById('decrypt-btn');
+            
+            decryptBtn.addEventListener('click', async function() {
+                const ciphertext = document.getElementById('ciphertext').value.trim();
+                const caesarShift = parseInt(document.getElementById('decrypt-caesar-shift').value);
+                const playfairKey = document.getElementById('decrypt-playfair-key').value.trim();
+
+                if (!ciphertext) {
+                    alert('Please enter the ciphertext to decrypt');
+                    return;
+                }
+
+                if (!playfairKey) {
+                    alert('Please enter the Playfair key');
+                    return;
+                }
+
+                if (isNaN(caesarShift) || caesarShift < 1 || caesarShift > 25) {
+                    alert('Caesar shift must be a number between 1 and 25');
+                    return;
+                }
+
+                try {
+                    const result = await decrypt(ciphertext, caesarShift, playfairKey);
+                    
+                    // Display results
+                    document.getElementById('playfair-result').textContent = result.playfair_result || 'N/A';
+                    document.getElementById('plaintext-result').textContent = result.plaintext || 'N/A';
+                    
+                    // Display Playfair matrix
+                    if (result.playfair_matrix) {
+                        displayPlayfairMatrix(result.playfair_matrix, 'playfair-matrix');
+                    }
+                    
+                } catch (error) {
+                    console.error('Decryption error:', error);
+                    alert('An error occurred during decryption. Please check your input and try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

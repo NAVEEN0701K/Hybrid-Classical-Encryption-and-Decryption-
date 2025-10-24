@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Hybrid Classical Cipher</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>About Hybrid Cipher</h1>
+            <p>Understanding the technology behind the encryption</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="encrypt.html">Encrypt</a></li>
+                <li><a href="decrypt.html">Decrypt</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="about-section">
+            <h2>What is a Hybrid Cipher?</h2>
+            <p>A hybrid cipher combines multiple encryption techniques to enhance security. In this implementation, we combine the Caesar cipher and the Playfair cipher to create a more secure encryption system than either could provide alone.</p>
+        </section>
+
+        <section class="cipher-section">
+            <h2>Caesar Cipher</h2>
+            <p>The Caesar cipher is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher where each letter in the plaintext is shifted a certain number of places down the alphabet.</p>
+            
+            <div class="example">
+                <h3>Example (Shift of 3):</h3>
+                <p><strong>Plaintext:</strong>  HELLO</p>
+                <p><strong>Shift:</strong>     +3</p>
+                <p><strong>Ciphertext:</strong> KHOOR</p>
+            </div>
+            
+            <h3>How it works:</h3>
+            <ol>
+                <li>Choose a shift value (key) between 1 and 25</li>
+                <li>For each letter in the plaintext, shift it by the key value in the alphabet</li>
+                <li>Wrap around to the beginning if the shift goes past 'Z'</li>
+                <li>Non-alphabetic characters remain unchanged</li>
+            </ol>
+            
+            <div class="security-note">
+                <h4>Security Note:</h4>
+                <p>The Caesar cipher is very weak by modern standards. With only 25 possible keys, it's vulnerable to brute force attacks. That's why we combine it with the Playfair cipher for enhanced security.</p>
+            </div>
+        </section>
+
+        <section class="cipher-section">
+            <h2>Playfair Cipher</h2>
+            <p>The Playfair cipher is a digraph substitution cipher that encrypts pairs of letters (digraphs) using a 5×5 grid of letters constructed from a keyword.</p>
+            
+            <div class="example">
+                <h3>Example (Key: 'MONARCHY'):</h3>
+                <p><strong>Plaintext:</strong>  HIDE THE GOLD</p>
+                <p><strong>Key:</strong>       MONARCHY</p>
+                <p><strong>Matrix:</strong>     M O N A R</p>
+                <p>                      C H Y B D</p>
+                <p>                      E F G I/J K</p>
+                <p>                      L P Q S T</p>
+                <p>                      U V W X Z</p>
+                <p><strong>Ciphertext:</strong> BM OD ZB XD NA BE KU DM UI XM MO UV IF</p>
+            </div>
+            
+            <h3>How it works:</h3>
+            <ol>
+                <li>Create a 5×5 matrix using the keyword (I and J share the same cell)</li>
+                <li>Split the plaintext into digraphs (pairs of letters)</li>
+                <li>Apply the following rules to each digraph:</li>
+                <ul>
+                    <li><strong>Same row:</strong> Shift each letter to the right (wrapping around)</li>
+                    <li><strong>Same column:</strong> Shift each letter down (wrapping around)</li>
+                    <li><strong>Rectangle:</strong> Take the letter in the same row but in the column of the other letter</li>
+                </ul>
+            </ol>
+            
+            <div class="security-note">
+                <h4>Security Note:</h4>
+                <p>While stronger than simple substitution ciphers, the Playfair cipher is still vulnerable to known-plaintext attacks and frequency analysis when used alone.</p>
+            </div>
+        </section>
+
+        <section class="hybrid-section">
+            <h2>Hybrid Approach</h2>
+            <p>Our hybrid approach combines both ciphers to create a more secure encryption system:</p>
+            
+            <h3>Encryption Process:</h3>
+            <ol>
+                <li>Apply the Caesar cipher to the plaintext</li>
+                <li>Take the result and apply the Playfair cipher</li>
+                <li>The final result is the ciphertext</li>
+            </ol>
+            
+            <h3>Decryption Process:</h3>
+            <ol>
+                <li>Apply the Playfair decryption to the ciphertext</li>
+                <li>Take the result and apply the Caesar decryption</li>
+                <li>The final result is the original plaintext</li>
+            </ol>
+            
+            <h3>Security Advantages:</h3>
+            <ul>
+                <li><strong>Increased Key Space:</strong> The combination of both ciphers creates a larger effective key space</li>
+                <li><strong>Multiple Layers:</strong> Even if one cipher is broken, the other still provides protection</li>
+                <li><strong>Pattern Obfuscation:</strong> The Caesar shift helps obscure patterns that might be present in the Playfair cipher</li>
+            </ul>
+        </section>
+
+        <section class="limitations">
+            <h2>Limitations</h2>
+            <p>While this hybrid approach is more secure than either cipher alone, it's important to understand its limitations:</p>
+            <ul>
+                <li>Not suitable for high-security applications</li>
+                <li>Vulnerable to known-plaintext attacks if the attacker has enough data</li>
+                <li>Modern cryptographic algorithms like AES are much more secure for real-world use</li>
+            </ul>
+            <p>This implementation is intended for educational purposes to demonstrate classical cipher techniques.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Hybrid Classical Cipher. All rights reserved.</p>
+            <p>Educational use only. Not for securing sensitive information.</p>
+        </div>
+    </footer>
+</body>
+</html>
