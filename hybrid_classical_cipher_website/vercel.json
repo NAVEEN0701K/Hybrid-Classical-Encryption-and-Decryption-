@@ -1,35 +1,4 @@
 {
   "version": 2,
-  "functions": {
-    "backend/app.py": {
-      "runtime": "@vercel/python"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "backend/app.py"
-    },
-    {
-      "source": "/css/(.*)",
-      "destination": "/frontend/css/$1"
-    },
-    {
-      "source": "/js/(.*)",
-      "destination": "/frontend/js/$1"
-    },
-    {
-      "source": "/(encrypt|decrypt|about).html",
-      "destination": "/frontend/$1.html"
-    },
-    {
-      "source": "/index.html",
-      "destination": "/frontend/index.html"
-    },
-    {
-      "source": "/",
-      "destination": "/frontend/index.html"
-    }
-  ],
   "cleanUrls": true
 }
