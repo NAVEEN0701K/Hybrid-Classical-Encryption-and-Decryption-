@@ -3,8 +3,10 @@ from flask_cors import CORS
 import sys
 import os
 
-# Add the parent directory to the Python path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add the current directory and parent directory to the Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
+sys.path.append(os.path.dirname(current_dir))
 
 import caesar
 import playfair
