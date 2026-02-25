@@ -1,5 +1,5 @@
 // API base URL - update this if your backend is hosted elsewhere
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 /**
  * Encrypt a message using the hybrid cipher
