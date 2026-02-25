@@ -6,9 +6,12 @@ import os
 # Add the parent directory to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from .caesar import caesar_cipher
-from .playfair import playfair_encrypt, playfair_decrypt, create_matrix
-from .hybrid import hybrid_encrypt, hybrid_decrypt
+import caesar
+import playfair
+import hybrid
+from caesar import caesar_cipher
+from playfair import playfair_encrypt, playfair_decrypt, create_matrix
+from hybrid import hybrid_encrypt, hybrid_decrypt
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
