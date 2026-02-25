@@ -59,10 +59,21 @@ A modern web application that demonstrates a **Hybrid Encryption approach**, com
 
 ### Deployment (Vercel)
 
-This project is pre-configured for Vercel. Simply connect your GitHub repository to Vercel, and it will automatically:
-- Deploy the Python backend as serverless functions.
-- Host the frontend as static assets.
-- Configure proper routing via `vercel.json`.
+This project is pre-configured for Vercel. Simply connect your GitHub repository to Vercel.
+
+> [!IMPORTANT]
+> **Fixing the "Root Directory" Error**:
+> During the Vercel setup, if you see an error about the **Root Directory**, follow these steps:
+> 1. Go to your **Project Settings** in Vercel.
+> 2. Find the **Root Directory** field.
+> 3. **Clear the field completely** (remove `./` or any other text). It should be **left empty**.
+> 4. Click **Save**.
+> 5. Go to the **Deployments** tab and redeploy the latest commit.
+
+Vercel will then automatically:
+- Deploy the Python backend as serverless functions from the `/api` directory.
+- Host the frontend files (now in the root) as static assets.
+- Configure proper routing automatically.
 
 ## 🔒 Security Explanation
 
